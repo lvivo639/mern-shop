@@ -1,8 +1,23 @@
-const App = () => {
+import React from "react";
+import './bootstrap.min.css'
+import Header from "./components/Header";
+import Footer from "./components/Footer"
+import MainPage from "./screens/MainPage";
+import {BrowserRouter as Router, Route} from 'react-router-dom'
+import ProductPage from "./screens/ProductPage";
+
+function App() {
     return (
-        <div className="App">
-            <h1>Welcome</h1>
-        </div>
+        <Router>
+            <div className="App">
+                <Header/>
+                <div className="container py-4">
+                    <Route exact path='/' component={MainPage}/>
+                    <Route path='/product/:id' component={ProductPage}/>
+                </div>
+                <Footer/>
+            </div>
+        </Router>
     );
 }
 
