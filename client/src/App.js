@@ -9,9 +9,9 @@ import ProductPage from "./screens/ProductPage";
 function App() {
     return (
         <Router>
-            <div className="App">
+            <div className="App" >
                 <Header/>
-                <div className="container py-4">
+                <div className="container py-4" style={{minHeight: '80vh'}}>
                     <Route exact path='/' component={MainPage}/>
                     <Route path='/product/:id' component={ProductPage}/>
                 </div>
