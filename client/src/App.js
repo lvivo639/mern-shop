@@ -13,7 +13,7 @@ function App() {
                 <Header/>
                 <div className="container py-4" style={{minHeight: '80vh'}}>
                     <Route exact path='/' component={MainPage}/>
-                    <Route path='/product/:id' component={ProductPage}/>
+                    <Route path='/product/:productId' component={ProductPage}/>
                 </div>
                 <Footer/>
             </div>

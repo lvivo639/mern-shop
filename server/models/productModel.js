@@ -1,16 +1,16 @@
-import mongoose, { mongo } from 'mongoose'
+import mongoose from 'mongoose'
 
 const reviewScheme = mongoose.Schema({
-    name: {type:String, required:true},
-    rating: {type:Number, required:true},
-    comment: {type:String, required:true},
-},{
-    timestamps:true
+    name: { type: String, required: true },
+    rating: { type: Number, required: true },
+    comment: { type: String, required: true },
+}, {
+    timestamps: true
 })
 
 const productSchema = mongoose.Schema({
     user: {
-        type:mongoose.Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'User'
     },
@@ -58,6 +58,21 @@ const productSchema = mongoose.Schema({
 
 })
 
-const Product = mongoose.model('Product', productSchema)
+const _product = mongoose.model('Product', productSchema)
+
+class Product {
+    static async getAll() {
+        return await _product.find({})
+    }
+
+    static async getById(id) {
+        try {
+            return await _product.findById(id)
+        } catch (err) {
+            console.error(`Find product by id err: ${err.message}`);
+            return null
+        }
+    }
+}
 
 export default Product
