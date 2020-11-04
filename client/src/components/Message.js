@@ -1,8 +1,9 @@
 import React from 'react';
+import styles from './message.module.css'
 
 const Message = ({variant, children}) => {
     return (
-        <div className={`alert alert-${variant}`} role="alert">
+        <div className={`alert alert-${variant} ${styles.message}`} role="alert">
             {children}
         </div>
     );

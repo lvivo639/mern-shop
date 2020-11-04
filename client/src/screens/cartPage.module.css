@@ -1,0 +1,8 @@
+.cartItem{
+    align-items: center;
+    padding: 0 15px;
+}
+
+.cart h1{
+    margin: 20px 0;
+}

@@ -1,0 +1,9 @@
+.info__item{
+    display: flex;
+    justify-content: space-between;
+}
+
+.rating{
+    text-align: right;
+}
+
