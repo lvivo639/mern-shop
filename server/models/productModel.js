@@ -58,21 +58,6 @@ const productSchema = mongoose.Schema({
 
 })
 
-const _product = mongoose.model('Product', productSchema)
-
-class Product {
-    static async getAll() {
-        return await _product.find({})
-    }
-
-    static async getById(id) {
-        try {
-            return await _product.findById(id)
-        } catch (err) {
-            console.error(`Find product by id err: ${err.message}`);
-            return null
-        }
-    }
-}
+const Product = mongoose.model('Product', productSchema)
 
 export default Product
