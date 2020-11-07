@@ -1,13 +1,15 @@
 import React from "react";
 import './bootstrap.min.css'
+import './index.css'
 import Header from "./components/Header";
 import Footer from "./components/Footer"
-import MainPage from "./screens/MainPage";
+import MainPage from "./pages/MainPage";
 import {BrowserRouter as Router, Route} from 'react-router-dom'
-import ProductPage from "./screens/ProductPage";
-import CartPage from "./screens/CartPage";
-import LoginPage from "./screens/loginPage";
-import RegisterPage from "./screens/registerPage";
+import ProductPage from "./pages/ProductPage";
+import CartPage from "./pages/CartPage";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
     return (
@@ -20,6 +22,7 @@ function App() {
                     <Route path='/cart/:pid?' component={CartPage}/>
                     <Route path='/login' component={LoginPage}/>
                     <Route path='/register' component={RegisterPage}/>
+                    <Route path='/profile' component={ProfilePage}/>
                 </div>
                 <Footer/>
             </div>

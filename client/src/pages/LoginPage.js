@@ -12,19 +12,20 @@ const LoginPage = ({location, history}) => {
     const [password, setPassword] = useState('')
 
     const dispatch = useDispatch()
-    const userLogin = useSelector(state => state.userLogin)
 
+    const userLogin = useSelector(state => state.userLogin)
     const {loading, error, userInfo} = userLogin
 
-    const redirect = getSearchParam(location.search, 'redirect', null)
+    const redirect = getSearchParam(location.search, 'redirect', '/')
 
     const submitHandler = e => {
         e.preventDefault()
         dispatch(userLoginAction(email, password))
+
     }
 
     useEffect(() => {
-        if (userInfo) history.push('/')
+        if (userInfo) history.push(redirect)
     }, [history, userInfo, redirect])
 
     return (

@@ -12,3 +12,6 @@ code {
     monospace;
 }
 
+.form-control{
+    color: black !important;
+}
