@@ -6,6 +6,8 @@ import MainPage from "./screens/MainPage";
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import ProductPage from "./screens/ProductPage";
 import CartPage from "./screens/CartPage";
+import LoginPage from "./screens/loginPage";
+import RegisterPage from "./screens/registerPage";
 
 function App() {
     return (
@@ -16,6 +18,8 @@ function App() {
                     <Route exact path='/' component={MainPage}/>
                     <Route path='/product/:pid' component={ProductPage}/>
                     <Route path='/cart/:pid?' component={CartPage}/>
+                    <Route path='/login' component={LoginPage}/>
+                    <Route path='/register' component={RegisterPage}/>
                 </div>
                 <Footer/>
             </div>

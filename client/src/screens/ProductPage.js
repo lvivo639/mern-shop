@@ -7,6 +7,7 @@ import Message from "../components/Message";
 import Qty from "../components/Qty";
 import Rating from "../components/Rating";
 import styles from './productPage.module.css'
+
 const ProductPage = ({match, history}) => {
     const dispatch = useDispatch()
     const productDetails = useSelector(state => state.productDetails)

@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {addToCartAction, removeFromCartAction} from "../actions/cartActions";
 import Message from "../components/Message";
 import styles from './cartPage.module.css'
+import getSearchParam from "../utils/getSearchParam";
 
 const CartPage = ({match, location}) => {
     const pid = match.params.pid
@@ -11,11 +12,7 @@ const CartPage = ({match, location}) => {
 
     useEffect(() => {
         if (pid) {
-            let qty = 1
-            try {
-                qty = location.search.match(/qty=([^&]*)/i)[1]
-            } catch (e) {
-            }
+            const qty = getSearchParam(location.search, 'qty', 1)
             dispatch(addToCartAction(pid, qty))
         }
     }, [dispatch, pid, location])
