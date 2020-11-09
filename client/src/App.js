@@ -13,6 +13,7 @@ import ProfilePage from "./pages/ProfilePage";
 import ShippingPage from "./pages/ShippingPage";
 import PaymentPage from "./pages/PaymentPage";
 import PlaceOrderPage from "./pages/PlaceOrderPage";
+import OrderPage from "./pages/OrderPage";
 
 function App() {
     return (
@@ -20,6 +21,8 @@ function App() {
             <div className="App" >
                 <Header/>
                 <div className="container py-4" style={{minHeight: '80vh'}}>
+
+                    <Route path='/order/:id' component={OrderPage} />
                     <Route exact path='/' component={MainPage}/>
                     <Route path='/product/:pid' component={ProductPage}/>
                     <Route path='/cart/:pid?' component={CartPage}/>
