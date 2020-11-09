@@ -1,6 +1,6 @@
 const getSearchParam = (searchStr, paramKey, defaultValue) => {
     try {
-       return  searchStr.match(new RegExp('/'+ paramKey + '=([^&]*)/i'))[1]
+       return searchStr.match(new RegExp(paramKey + '=([^&]*)', 'i'))[1]
     } catch (e) {
         return defaultValue
     }

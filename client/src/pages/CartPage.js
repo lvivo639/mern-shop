@@ -6,7 +6,7 @@ import Message from "../components/Message";
 import styles from './cartPage.module.css'
 import getSearchParam from "../utils/getSearchParam";
 
-const CartPage = ({match, location}) => {
+const CartPage = ({match, location, history}) => {
     const pid = match.params.pid
     const dispatch = useDispatch()
 
