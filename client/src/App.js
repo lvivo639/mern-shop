@@ -15,6 +15,8 @@ import PaymentPage from "./pages/PaymentPage";
 import PlaceOrderPage from "./pages/PlaceOrderPage";
 import OrderPage from "./pages/OrderPage";
 import UserListPage from "./pages/UserListPage";
+import UserEditPage from "./pages/UserEditPage";
+import ProductListPage from "./pages/ProductListPage";
 
 function App() {
     return (
@@ -23,7 +25,9 @@ function App() {
                 <Header/>
                 <div className="container py-4" style={{minHeight: '80vh'}}>
 
-                    <Route path='/admin/userlist' component={UserListPage} />
+                    <Route path='/admin/productlist' component={ProductListPage} />
+                    <Route path='/admin/user/:id/edit' component={UserEditPage}/>
+                    <Route path='/admin/userlist' component={UserListPage}/>
                     <Route path='/order/:id' component={OrderPage} />
                     <Route exact path='/' component={MainPage}/>
                     <Route path='/product/:pid' component={ProductPage}/>
