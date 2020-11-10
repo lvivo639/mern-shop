@@ -30,7 +30,7 @@ const PlaceOrderPage = ({history}) => {
         if (success) {
             history.push(`/order/${order._id}`)
         }
-    }, [history, success])
+    }, [history, success, order])
 
     const placeOrderHandler = () => {
         dispatch(
@@ -61,89 +61,88 @@ const PlaceOrderPage = ({history}) => {
                                 {cart.shippingAddress.country}
                             </p>
                         </div>
-
                         <div className="list-group-item">
                             <h2>Payment Method</h2>
                             <strong>Method: </strong>
                             {cart.paymentMethod}
                             <div/>
 
-                            <div className="list-group-item">
-                                <h2>Order Items</h2>
-                                {cart.cartItems.length === 0 ? (
-                                    <Message>Your cart is empty</Message>
-                                ) : (
-                                    <div className="list-group">
-                                        {cart.cartItems.map((item, index) => (
-                                            <div className="list-group-item" key={index}>
-                                                <div className="row">
-                                                    <div className="col col-md-1">
-                                                        <img
-                                                            src={item.image}
-                                                            alt={item.name}
-                                                            className="fluid rounded"
-                                                        />
-                                                    </div>
-                                                    <div className="col">
-                                                        <Link to={`/product/${item.product}`}>
-                                                            {item.name}
-                                                        </Link>
-                                                    </div>
-                                                    <div className="col col-md-4">
-                                                        {item.qty} x ${item.price} = ${item.qty * item.price}
-                                                    </div>
+                        </div>
+                        <div className="list-group-item">
+                            <h2>Order Items</h2>
+                            {cart.cartItems.length === 0 ? (
+                                <Message>Your cart is empty</Message>
+                            ) : (
+                                <div className="list-group">
+                                    {cart.cartItems.map((item, index) => (
+                                        <div className="list-group-item" key={index}>
+                                            <div className="row">
+                                                <div className="col col-md-1">
+                                                    <img
+                                                        src={item.image}
+                                                        alt={item.name}
+                                                        className="img-fluid rounded"
+                                                    />
+                                                </div>
+                                                <div className="col">
+                                                    <Link to={`/product/${item.product}`}>
+                                                        {item.name}
+                                                    </Link>
+                                                </div>
+                                                <div className="col col-md-4">
+                                                    {item.qty} x ${item.price} = ${(item.qty * item.price).toFixed(2)}
                                                 </div>
                                             </div>
-                                        ))}
-                                    </div>
-                                )}
-                            </>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
                         </div>
                     </div>
-                    <div className="col col-md-4">
-                        <div className="card">
-                            <div className="list-group">
-                                <div className="list-group-item">
-                                    <h2>Order Summary</h2>
+                </div>
+                <div className="col col-md-4">
+                    <div className="card">
+                        <div className="list-group">
+                            <div className="list-group-item">
+                                <h2>Order Summary</h2>
+                            </div>
+                            <div className="list-group-item">
+                                <div className="row">
+                                    <div className="col">Items</div>
+                                    <div className="col">${cart.itemsPrice}</div>
                                 </div>
-                                <div className="list-group-item">
-                                    <div className="row">
-                                        <div className="col">Items</div>
-                                        <div className="col">${cart.itemsPrice}</div>
-                                    </div>
+                            </div>
+                            <div className="list-group-item">
+                                <div className="row">
+                                    <div className="col">Shipping</div>
+                                    <div className="col">${cart.shippingPrice}</div>
                                 </div>
-                                <div className="list-group-item">
-                                    <div className="row">
-                                        <div className="col">Shipping</div>
-                                        <div className="col">${cart.shippingPrice}</div>
-                                    </div>
+                            </div>
+                            <div className="list-group-item">
+                                <div className="row">
+                                    <div className="col">Tax</div>
+                                    <div className="col">${cart.taxPrice}</div>
                                 </div>
-                                <div className="list-group-item">
-                                    <div className="row">
-                                        <div className="col">Tax</div>
-                                        <div className="col">${cart.taxPrice}</div>
-                                    </div>
+                            </div>
+                            <div className="list-group-item">
+                                <div className="row">
+                                    <div className="col">Total</div>
+                                    <div className="col">${cart.totalPrice}</div>
                                 </div>
+                            </div>
+                            {error && (
                                 <div className="list-group-item">
-                                    <div className="row">
-                                        <div className="col">Total</div>
-                                        <div className="col">${cart.totalPrice}</div>
-                                    </div>
+                                    <Message variant="danger">{error}</Message>
                                 </div>
-                                {error && (
-                                    <div className="list-group-item">
-                                        <Message variant="danger">{error}</Message>
-                                    </div>
-                                )}
-                                <div className="list-group-item">
-                                    <button className="btn btn-primary btn-block"
-                                            type='button'
-                                            disabled={cart.cartItems === 0}
-                                            onClick={placeOrderHandler}
-                                    >
-                                        Place Order
-                                    </button>
-                                </div>
+                            )}
+                            <div className="list-group-item">
+                                <button className="btn btn-primary btn-block"
+                                        type='button'
+                                        disabled={cart.cartItems === 0}
+                                        onClick={placeOrderHandler}
+                                >
+                                    Place Order
+                                </button>
                             </div>
                         </div>
                     </div>

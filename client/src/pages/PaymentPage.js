@@ -30,21 +30,24 @@ const PaymentPage = ({history}) => {
                 <div className="form-group">
                     <label>Select Method</label>
                     <div className='col'>
-                        <input
-                            type='radio'
-                            label='PayPal or Credit Card'
-                            id='PayPal'
-                            name='paymentMethod'
-                            value='PayPal'
-                            checked
-                            onChange={(e) => setPaymentMethod(e.target.value)}
-                        />
+                        <div className="form-check">
+                            <input className="form-check-input"
+                                   type="radio"
+                                   name="paymentMethod"
+                                   id="PayPal"
+                                   value="PayPal"
+                                   checked
+                                   onChange={(e) => setPaymentMethod(e.target.value)}/>
+                                <label className="form-check-label" htmlFor="exampleRadios1">
+                                    PayPal or Credit Card
+                                </label>
+                        </div>
                     </div>
                 </div>
 
-                <Button type='submit' variant='primary'>
+                <button className='btn btn-secondary' type='submit' variant='primary'>
                     Continue
-                </Button>
+                </button>
             </form>
         </FormContainer>
     )
