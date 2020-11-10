@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon server/server",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "dev":  "kill $(lsof -t -i:5000) & concurrently \"npm run server\" \"npm run client\"",
     "import": "node server/seeder",
     "destroy": "node server/seeder -d"
   },

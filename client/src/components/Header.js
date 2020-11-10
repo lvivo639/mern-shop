@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {userLogoutAction} from "../actions/userActions";
 
-const Header = () => {
+const Header = ({history}) => {
     const dispatch = useDispatch()
     const userLogin = useSelector(state => state.userLogin)
 
@@ -11,6 +11,7 @@ const Header = () => {
 
     const logoutHandler = () => {
         dispatch(userLogoutAction())
+        history.push('/')
     }
 
     return (
@@ -42,6 +43,26 @@ const Header = () => {
                                 <Link to='/login'>
                                     <div className="nav-link">Sign in</div>
                                 </Link>
+                            </li>
+                        )}
+
+                        {userInfo && userInfo.isAdmin && (
+                            <li className="nav-item dropdown">
+                                <div className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Admin
+                                </div>
+                                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <Link to='/admin/userlist'>
+                                        <div className="dropdown-item">Users</div>
+                                    </Link>
+                                    <Link to='/admin/productlist'>
+                                        <div className="dropdown-item">Products</div>
+                                    </Link>
+                                    <Link to='/admin/orderlist'>
+                                        <div className="dropdown-item">Orders</div>
+                                    </Link>
+                                </div>
                             </li>
                         )}
 
