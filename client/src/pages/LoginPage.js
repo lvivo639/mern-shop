@@ -17,7 +17,6 @@ const LoginPage = ({location, history}) => {
     const {loading, error, userInfo} = userLogin
 
     const redirect = getSearchParam(location.search, 'redirect', '/')
-    console.log(redirect)
 
     const submitHandler = e => {
         e.preventDefault()

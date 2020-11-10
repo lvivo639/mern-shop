@@ -1,6 +1,6 @@
 import {
     USER_DETAILS_FAIL,
-    USER_DETAILS_REQUEST,
+    USER_DETAILS_REQUEST, USER_DETAILS_RESET,
     USER_DETAILS_SUCCESS,
     USER_LOGIN_FAIL,
     USER_LOGIN_REQUEST,
@@ -14,6 +14,7 @@ import {
     USER_UPDATE_PROFILE_SUCCESS
 } from "../actionTypes/userActionTypes";
 import axios from "axios";
+import {ORDER_LIST_MY_RESET} from "../actionTypes/orderActionTypes";
 
 export const userLoginAction = (email, password) => async (dispatch) => {
     try {
@@ -40,6 +41,8 @@ export const userLoginAction = (email, password) => async (dispatch) => {
 export const userLogoutAction = () => (dispatch) => {
     localStorage.removeItem('userInfo')
     dispatch({type: USER_LOGOUT})
+    dispatch({ type: USER_DETAILS_RESET })
+    dispatch({ type: ORDER_LIST_MY_RESET })
 }
 
 export const userRegisterAction = (name, email, password) => async (dispatch) => {
@@ -70,7 +73,6 @@ export const getUserDetailsAction = (id) => async (dispatch, getState) => {
     try {
         dispatch({type: USER_DETAILS_REQUEST})
         const {userLogin} = getState()
-        console.log(userLogin)
 
         const config = {
             headers: {
