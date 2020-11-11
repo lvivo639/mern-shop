@@ -2,8 +2,9 @@ import React, {useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import Message from '../components/Message'
 import Loading from '../components/Loading'
-import {productListAction} from '../actions/productActions'
+import {createProductAction, deleteProductAction, productListAction} from '../actions/productActions'
 import {Link} from "react-router-dom";
+import {PRODUCT_CREATE_RESET} from "../actionTypes/productActionTypes";
 
 const ProductListPage = ({history, match}) => {
     const dispatch = useDispatch()
@@ -21,22 +22,42 @@ const ProductListPage = ({history, match}) => {
         success: successDelete,
     } = productDelete
 
+    const productCreate = useSelector((state) => state.productCreate)
+    const {
+        loading: loadingCreate,
+        error: errorCreate,
+        success: successCreate,
+        product: createdProduct,
+    } = productCreate
+
     useEffect(() => {
-        if (userInfo && userInfo.isAdmin) {
-            dispatch(productListAction())
-        } else {
+        dispatch({ type: PRODUCT_CREATE_RESET })
+
+        if (!userInfo.isAdmin) {
             history.push('/login')
         }
-    }, [dispatch, history, userInfo, successDelete])
+        if (successCreate) {
+            history.push(`/admin/product/${createdProduct._id}/edit`)
+        } else {
+            dispatch(productListAction())
+        }
+    }, [
+        dispatch,
+        history,
+        userInfo,
+        successDelete,
+        successCreate,
+        createdProduct,
+    ])
 
     const deleteHandler = (id) => {
         if (window.confirm('Are you sure')) {
-            dispatch(deleteProduct(id))
+            dispatch(deleteProductAction(id))
         }
     }
 
     const createProductHandler = (product) => {
-        //   CREATE PRODUCT
+        dispatch(createProductAction())
     }
 
     return (
@@ -53,6 +74,8 @@ const ProductListPage = ({history, match}) => {
             </div>
             {loadingDelete && <Loading />}
             {errorDelete && <Message variant='danger'>{errorDelete}</Message>}
+            {loadingCreate && <Loading />}
+            {errorCreate && <Message variant='danger'>{errorCreate}</Message>}
             {loading ? (
                 <Loading/>
             ) : error ? (

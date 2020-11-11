@@ -65,6 +65,7 @@ const UserEditPage = ({match, history}) => {
                                    type='name'
                                    placeholder='Enter name'
                                    value={name}
+                                   id="name"
                                    onChange={(e) => setName(e.target.value)}/>
                         </div>
 
@@ -72,6 +73,7 @@ const UserEditPage = ({match, history}) => {
                             <label htmlFor="email">Email Address</label>
                             <input className="form-control"
                                    type='email'
+                                   id="email"
                                    placeholder='Enter email'
                                    value={email}
                                    onChange={(e) => setEmail(e.target.value)}
