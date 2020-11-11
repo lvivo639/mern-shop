@@ -12,7 +12,8 @@ import orderRoutes from "./routes/orderRoutes.js";
 import uploadRoutes from "./routes/uploadRoutes.js";
 
 dotenv.config()
-connectDB().then(r => {})
+connectDB().then(r => {
+})
 
 const app = express()
 
@@ -21,10 +22,6 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 app.use(express.json())
-
-app.get('/', (req, res) => {
-    res.send('API running...')
-})
 
 app.use('/api/products', productRoutes)
 app.use('/api/users', userRouters)
@@ -36,8 +33,21 @@ app.get('/api/config/paypal', (req, res) =>
     res.send(process.env.PAYPAL_CLIENT_ID)
 )
 
+
 const __dirname = path.resolve()
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, '/uploads')))
+
+    app.get('*', (req, res) => {
+        res.sendFile((path.resolve(__dirname, 'client', 'build', 'index.html')))
+    })
+} else {
+    app.get('/', (req, res) => {
+        res.send('API running...')
+    })
+}
 
 app.use(notFound)
 app.use(errorHandler)
