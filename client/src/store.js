@@ -5,36 +5,52 @@ import {
     productCreateReducer,
     productDeleteReducer,
     productDetailsDeReducer,
-    productListReducer, productUpdateReducer
+    productListReducer,
+    productUpdateReducer
 } from "./reducers/productReducer";
 import {cartReducer} from "./reducers/cartReducer";
 import {
     userDeleteReducer,
-    userDetailsReducer, userListReducer,
+    userDetailsReducer,
+    userListReducer,
     userLoginReducer,
     userRegisterReducer,
-    userUpdateProfileReducer, userUpdateReducer
+    userUpdateProfileReducer,
+    userUpdateReducer
 } from "./reducers/userReducer";
-import {orderCreateReducer, orderDetailsReducer, orderListMyReducer, orderPayReducer} from "./reducers/orderReducers";
+import {
+    orderCreateReducer,
+    orderDeliverReducer,
+    orderDetailsReducer,
+    orderListMyReducer,
+    orderListReducer,
+    orderPayReducer
+} from "./reducers/orderReducers";
 
 const reducer = combineReducers({
     productList: productListReducer,
     productDetails: productDetailsDeReducer,
     productUpdate: productUpdateReducer,
     productDelete: productDeleteReducer,
-    cart: cartReducer,
+    productCreate: productCreateReducer,
+
+
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,
     userDetails: userDetailsReducer,
     userUpdateProfile: userUpdateProfileReducer,
-    orderCreate: orderCreateReducer,
-    orderDetails: orderDetailsReducer,
-    orderPay: orderPayReducer,
-    orderListMy: orderListMyReducer,
     userList: userListReducer,
     userDelete: userDeleteReducer,
     userUpdate: userUpdateReducer,
-    productCreate: productCreateReducer,
+
+    cart: cartReducer,
+
+    orderCreate: orderCreateReducer,
+    orderDetails: orderDetailsReducer,
+    orderPay: orderPayReducer,
+    orderDeliver: orderDeliverReducer,
+    orderListMy: orderListMyReducer,
+    orderList: orderListReducer,
 
 })
 

@@ -18,6 +18,7 @@ import UserListPage from "./pages/UserListPage";
 import UserEditPage from "./pages/UserEditPage";
 import ProductListPage from "./pages/ProductListPage";
 import ProductEditPage from "./pages/ProductEditPage";
+import OrderListPage from "./pages/OrderListPage";
 
 function App() {
     return (
@@ -25,7 +26,7 @@ function App() {
             <div className="App" >
                 <Header/>
                 <div className="container py-4" style={{minHeight: '80vh'}}>
-
+                    <Route path='/admin/orderlist' component={OrderListPage} />
                     <Route path='/admin/product/:id/edit' component={ProductEditPage} />
                     <Route path='/admin/productlist' component={ProductListPage} />
                     <Route path='/admin/user/:id/edit' component={UserEditPage}/>

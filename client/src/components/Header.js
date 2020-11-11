@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {userLogoutAction} from "../actions/userActions";
 
-const Header = ({history}) => {
+const Header = () => {
     const dispatch = useDispatch()
     const userLogin = useSelector(state => state.userLogin)
 
@@ -11,7 +11,6 @@ const Header = ({history}) => {
 
     const logoutHandler = () => {
         dispatch(userLogoutAction())
-        history.push('/')
     }
 
     return (
