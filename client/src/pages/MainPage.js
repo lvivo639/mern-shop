@@ -4,15 +4,18 @@ import ProductCard from "../components/ProductCard";
 import {productListAction} from "../actions/productActions";
 import Loading from "../components/Loading";
 import Message from "../components/Message";
+import getSearchParam from "../utils/getSearchParam";
 
-const MainPage = () => {
+const MainPage = ({location}) => {
+    const keyword = getSearchParam(location.search, 's', '')
+
     const dispatch = useDispatch()
     const productList = useSelector(state => state.productList)
     const {loading, error, products} = productList
 
     useEffect(() => {
-        dispatch(productListAction())
-    }, [dispatch])
+        dispatch(productListAction(keyword))
+    }, [dispatch, keyword])
 
     return (
         <div>
